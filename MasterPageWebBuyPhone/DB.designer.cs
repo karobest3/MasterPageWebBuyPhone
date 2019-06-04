@@ -45,7 +45,7 @@ namespace MasterPageWebBuyPhone
     #endregion
 		
 		public DBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebBuyPhoneConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebBuyPhoneConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

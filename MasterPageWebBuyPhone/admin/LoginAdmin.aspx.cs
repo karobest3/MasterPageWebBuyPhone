@@ -47,7 +47,7 @@ namespace MasterPageWebBuyPhone.admin
         {
             String user = Username.Text.ToString();
             String pass = Password.Text.ToString();
-            var count = db.AccountEmps.Select(p => p).Where(p => (p.Username.Equals(user) && p.Password.Equals(pass))).Count();
+            var count = db.AccountEmps.Select(p => p).Where(p => (p.Username.Equals(user) && p.Password.Equals(HashPass.GetPass(pass)))).Count();
             if (count.Equals(0))
             {
                 Password.Focus();

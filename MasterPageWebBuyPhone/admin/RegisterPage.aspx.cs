@@ -54,19 +54,14 @@ namespace MasterPageWebBuyPhone.admin
             Acc.Secret_Answer = Answer.Text;
             //db.AccountEmps.InsertOnSubmit(Acc);
             //db.SubmitChanges();
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-
-            smtpClient.Credentials = new System.Net.NetworkCredential
-                ("karobest3@gmail.com","KKkk0902");
-            smtpClient.UseDefaultCredentials = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.EnableSsl = true;
             MailMessage mail = new MailMessage
-                ("karobest3@gmail.com",Email.Text,"ID",Password.Text);
-            using (var smtpClient1 = smtpClient)
-            {
-                smtpClient1.Send(mail);
-            }
+              ("karobest3@gmail.com", "karobest3@gmail.com", "ID", "karobest3@gmail.com");
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            smtpClient.EnableSsl = true;
+            smtpClient.Credentials = new System.Net.NetworkCredential
+                ("karobest3@gmail.com", "KKkk0902");
+             smtpClient.Send(mail);
+   
             Response.Redirect("RegisterPage.aspx");
 
         }
