@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -73,7 +74,9 @@
     <Content Include="admin\css\FormLogin.css" />
     <Content Include="admin\HomeAdmin.aspx" />
     <Content Include="admin\LoginAdmin.aspx" />
+    <Content Include="admin\pagelist\ListEmpPage.aspx" />
     <Content Include="admin\RegisterPage.aspx" />
+    <Content Include="admin\UpdateInfoEmp.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -99,12 +102,26 @@
     <Compile Include="admin\LoginAdmin.aspx.designer.cs">
       <DependentUpon>LoginAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\pagelist\ListEmpPage.aspx.cs">
+      <DependentUpon>ListEmpPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\pagelist\ListEmpPage.aspx.designer.cs">
+      <DependentUpon>ListEmpPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\RegisterPage.aspx.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\RegisterPage.aspx.designer.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UpdateInfoEmp.aspx.cs">
+      <DependentUpon>UpdateInfoEmp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\UpdateInfoEmp.aspx.designer.cs">
+      <DependentUpon>UpdateInfoEmp.aspx</DependentUpon>
     </Compile>
     <Compile Include="DB.designer.cs">
       <AutoGen>True</AutoGen>

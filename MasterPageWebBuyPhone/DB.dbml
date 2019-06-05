@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebBuyPhone" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-M5M74MM\SQLEXPRESS;Initial Catalog=WebBuyPhone;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebBuyPhoneConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=Admin;Initial Catalog=WebBuyPhone;User ID=sa;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebBuyPhoneConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccountEmp" Member="AccountEmps">
     <Type Name="AccountEmp">
       <Column Name="ID_Account" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ID_Emp" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="Username" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Secret_Question" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Secret_Answer" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />

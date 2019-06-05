@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
 using System.Net;
+using System.Text;
+
 namespace MasterPageWebBuyPhone.admin
 {
     public partial class RegisterPage : System.Web.UI.Page
@@ -13,98 +15,62 @@ namespace MasterPageWebBuyPhone.admin
         private DBDataContext db = new DBDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack){ 
-                ListQuestion.Items.Add("What is the first phone number you use?");
-                ListQuestion.Items.Add("What is your first girlfriend's name?");
-                ListQuestion.Items.Add("Which animal do you like best?");
-                ListQuestion.Items.Add("Which subject do you like best?");
-                ListQuestion.Items.Add("Which car company do you like best?");
-            }
+          
         }
         protected void btnRegister_Click()
         {
+            
+           
             String IdEmp = "Emp-" + DateTime.Now.ToString("HH:mm:ss:ffffff");
             Employee Emp = new Employee();
             Emp.ID_Emp = IdEmp;
-            Emp.Address = Address.Text.ToString();
-            Emp.Birthday = Convert.ToDateTime(Birthday.Text);
             Emp.Email = Email.Text.ToString();
             Emp.FullName = FullName.Text.ToString();
-            Emp.Passport = Passport.Text.ToString();
             Emp.Phone = Phone.Text.ToString();
-            if (Female.Checked)
-            {
-                Emp.Sex = false;
-            }
-            else
-            {
-                Emp.Sex = true;
-            }
-            //db.Employees.InsertOnSubmit(Emp);
-            //db.SubmitChanges();
+            db.Employees.InsertOnSubmit(Emp);
+            db.SubmitChanges();
             AccountEmp Acc = new AccountEmp();
             String IdAcc = "Acc-" + DateTime.Now.ToString("HH:mm:ss:ffffff");
-
+            // Random Pass
+            Random random = new Random();
+            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            StringBuilder passRandom = new StringBuilder(8);
+            for (int i = 0; i < 8; i++)
+            {
+                passRandom.Append(characters[random.Next(characters.Length)]);
+            }
+            
             Acc.Active = true;
             Acc.Username = Username.Text;
-            Acc.Password = HashPass.GetPass(Password.Text);
             Acc.ID_Emp = IdEmp;
             Acc.ID_Account = IdAcc;
-            Acc.Secret_Question = ListQuestion.SelectedItem.Text;
-            Acc.Secret_Answer = Answer.Text;
-            //db.AccountEmps.InsertOnSubmit(Acc);
-            //db.SubmitChanges();
+            Acc.Password = HashPass.GetPass(Convert.ToString(passRandom));
+            Acc.Password = HashPass.GetPass(Convert.ToString(passRandom));
+            db.AccountEmps.InsertOnSubmit(Acc);
+            db.SubmitChanges();
             MailMessage mail = new MailMessage
-              ("karobest3@gmail.com", "karobest3@gmail.com", "ID", "karobest3@gmail.com");
+              ("karobest3@gmail.com", Email.Text, "Account Login", "Username: "+Username.Text +" Password: "+passRandom.ToString());
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.EnableSsl = true;
             smtpClient.Credentials = new System.Net.NetworkCredential
                 ("karobest3@gmail.com", "KKkk0902");
-             smtpClient.Send(mail);
-   
-            Response.Redirect("RegisterPage.aspx");
-
+            smtpClient.Send(mail);
+            Response.Redirect("RegisterPage.aspx");    
         }
-
-        protected void CustomPassValided(object source, ServerValidateEventArgs args)
+        protected void CheckUsername(object source, ServerValidateEventArgs args)
         {
-            if (args.Value == "")
+            int checkUser =
+            (from p in db.AccountEmps
+             where p.Username == Username.Text
+             select p).Count();
+            if (checkUser.Equals(1))
             {
                 args.IsValid = false;
             }
             else
             {
-                if (ConfirmPassword.Text.Equals(Password.Text))
-                {
-                    
-                    args.IsValid = true;
-                    btnRegister_Click();
-                }
-                else
-                {
-                    args.IsValid = false;
-
-                }
-            }
-        }
-        protected void CheckConfirmAnwser(object source, ServerValidateEventArgs args)
-        {
-            if (args.Value == "")
-            {
-                args.IsValid = false;
-            }
-            else
-            {
-                if (Answer.Text.Equals(ConfirmAnswer.Text))
-                {
-                   
-                    args.IsValid = true;
-                    btnRegister_Click();
-                }
-                else
-                {
-                    args.IsValid = false;
-                }
+                args.IsValid = true;
+                btnRegister_Click();
             }
         }
     }

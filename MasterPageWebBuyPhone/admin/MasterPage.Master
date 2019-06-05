@@ -22,21 +22,27 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <asp:LinkButton class="nav-link" ID="Home" runat="server" OnClick="Home_Click"> <i class="fas fa-home"></i></asp:LinkButton>
+                        <asp:LinkButton class="nav-link" ID="Home" runat="server" OnClick="Home_Click" CausesValidation="false"> <i class="fas fa-home"></i></asp:LinkButton>
+                    </li>
+                    <li class="nav-item">
+                        <asp:LinkButton class="nav-link" ID="addManufacturer" runat="server" OnClick="loadPageAddManu" CausesValidation="false"> Manufacturer</asp:LinkButton>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manufacturer</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <asp:LinkButton class="dropdown-item" ID="addManufacturer" runat="server" OnClick="loadPageAddManu"> Add Manufacturer</asp:LinkButton>     
+                            <asp:LinkButton class="dropdown-item" ID="listMNF" runat="server" OnClick="loadPageAddManu" CausesValidation="false"> Manufacturers</asp:LinkButton>     
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <asp:LinkButton class="dropdown-item" ID="listEmp" runat="server" OnClick="loadListEmp" CausesValidation="false"> Employees</asp:LinkButton>     
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                              <asp:Repeater ID="RepterDetails" runat="server">
                                  <ItemTemplate>
-                                     <asp:LinkButton class="dropdown-item" runat="server" OnClick="loadPageProduct" Text='<%#Eval("Name_Manufacturer")%>'> </asp:LinkButton>
+                                     <asp:LinkButton class="dropdown-item" runat="server" OnClick="loadPageProduct" Text='<%#Eval("Name_Manufacturer")%>' CausesValidation="false"> </asp:LinkButton>
                                  </ItemTemplate>
                              </asp:Repeater>
                         </div>
@@ -44,17 +50,17 @@
                 </ul>
                 <ul class="navbar-nav navbar-right navbar-top-links">
                     <li class="nav-item">
-                        <asp:LinkButton class="nav-link" ID="Register" runat="server" OnClick="Register_Click">Register</asp:LinkButton></li>
+                        <asp:LinkButton class="nav-link" ID="Register" runat="server" OnClick="Register_Click" CausesValidation="false">Register</asp:LinkButton></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>
                             <asp:Label ID="userLogin" runat="server"></asp:Label><b class="caret"></b>
                         </a>
                         <div class="dropdown-menu dropdown-user dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <asp:LinkButton class="dropdown-item" ID="InfoUser" runat="server" OnClick="showPageInfo"></> Infomation</asp:LinkButton>
+                            <asp:LinkButton class="dropdown-item" ID="InfoUser" runat="server" OnClick="showPageInfo" CausesValidation="false"></> Infomation</asp:LinkButton>
 
                             <a class="dropdown-item" href="#"><i class="fas fa-exchange-alt"></i>Change Password</a>
                             <div class="dropdown-divider"></div>
-                            <asp:LinkButton class="dropdown-item" ID="LogOut" runat="server" OnClick="LogOut_Click"><i class="fas fa-sign-out-alt"></i> Log Out</asp:LinkButton>
+                            <asp:LinkButton class="dropdown-item" ID="LogOut" runat="server" OnClick="LogOut_Click" CausesValidation="false"><i class="fas fa-sign-out-alt"></i> Log Out</asp:LinkButton>
                         </div>
                     </li>
                 </ul>

@@ -45,7 +45,7 @@ namespace MasterPageWebBuyPhone
     #endregion
 		
 		public DBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebBuyPhoneConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebBuyPhoneConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -219,7 +219,7 @@ namespace MasterPageWebBuyPhone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(30)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(100)")]
 		public string Password
 		{
 			get
