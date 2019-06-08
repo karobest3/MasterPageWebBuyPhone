@@ -1,18 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebBuyPhone" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=Admin;Initial Catalog=WebBuyPhone;User ID=sa;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebBuyPhoneConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.AccountEmp" Member="AccountEmps">
-    <Type Name="AccountEmp">
-      <Column Name="ID_Account" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ID_Emp" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Secret_Question" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Secret_Answer" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="AccountEmp_Role" Member="Roles" ThisKey="ID_Account" OtherKey="ID_Account" Type="Role" />
-      <Association Name="Employee_AccountEmp" Member="Employee" ThisKey="ID_Emp" OtherKey="ID_Emp" Type="Employee" IsForeignKey="true" />
-    </Type>
-  </Table>
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-QDMFCIS;Initial Catalog=WebBuyPhone;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebBuyPhoneConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Employees" Member="Employees">
     <Type Name="Employee">
       <Column Name="ID_Emp" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -26,6 +13,19 @@
       <Association Name="Employee_AccountEmp" Member="AccountEmps" ThisKey="ID_Emp" OtherKey="ID_Emp" Type="AccountEmp" />
     </Type>
   </Table>
+  <Table Name="dbo.AccountEmp" Member="AccountEmps">
+    <Type Name="AccountEmp">
+      <Column Name="ID_Account" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_Emp" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Secret_Question" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Secret_Answer" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="AccountEmp_Role" Member="Roles" ThisKey="ID_Account" OtherKey="ID_Account" Type="Role" />
+      <Association Name="Employee_AccountEmp" Member="Employee" ThisKey="ID_Emp" OtherKey="ID_Emp" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Manufacturer" Member="Manufacturers">
     <Type Name="Manufacturer">
       <Column Name="Id_Manufacturer" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -36,11 +36,11 @@
   </Table>
   <Table Name="dbo.Products" Member="Products">
     <Type Name="Product">
-      <Column Name="ID_Product" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_Product" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name_Product" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ID_Manufacturer" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Price_Product" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Img_Product" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Price_Product" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Img_Product" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Newfeature" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Column Name="Screen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -65,6 +65,7 @@
       <Column Name="Role_Register" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Role_Product" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Role_Roles" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Roles_Manufacturer" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="AccountEmp_Role" Member="AccountEmp" ThisKey="ID_Account" OtherKey="ID_Account" Type="AccountEmp" IsForeignKey="true" />
     </Type>
   </Table>

@@ -43,7 +43,7 @@ namespace MasterPageWebBuyPhone.admin
 
         protected void btnUpdate_Click()
         {
-
+            
         }
     }
 }

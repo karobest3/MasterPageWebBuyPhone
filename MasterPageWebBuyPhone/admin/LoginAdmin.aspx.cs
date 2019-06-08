@@ -50,6 +50,7 @@ namespace MasterPageWebBuyPhone.admin
                 role.Role_Register = 15;
                 role.Role_Product = 15;
                 role.Role_Roles = true;
+                role.Roles_Manufacturer = 15;
                 db.Roles.InsertOnSubmit(role);
                 db.SubmitChanges();
             }

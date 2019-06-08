@@ -72,6 +72,24 @@ namespace MasterPageWebBuyPhone.admin
                 roles.R_Product = getValueBoolean(Convert.ToString(binary[1]));
                 roles.U_Product = getValueBoolean(Convert.ToString(binary[2]));
                 roles.D_Product = getValueBoolean(Convert.ToString(binary[3]));
+                //Xu ly role Manufacturer
+                binary = Convert.ToString(Convert.ToInt32(item.Roles_Manufacturer), 2);
+                if (binary.Length.Equals(3))
+                {
+                    binary = "0" + binary;
+                }
+                if (binary.Length.Equals(2))
+                {
+                    binary = "00" + binary;
+                }
+                if (binary.Length.Equals(1))
+                {
+                    binary = "000" + binary;
+                }
+                roles.C_Manufacturer = getValueBoolean(Convert.ToString(binary[0]));
+                roles.R_Manufacturer = getValueBoolean(Convert.ToString(binary[1]));
+                roles.U_Manufacturer = getValueBoolean(Convert.ToString(binary[2]));
+                roles.D_Manufacturer = getValueBoolean(Convert.ToString(binary[3]));
                 list_Roles.Add(roles);
             }
             return list_Roles;
@@ -101,10 +119,10 @@ namespace MasterPageWebBuyPhone.admin
             CheckBox U_Product = row.Cells[7].Controls[0] as CheckBox;
             CheckBox D_Product = row.Cells[8].Controls[0] as CheckBox;
             CheckBox C_Decentralization = row.Cells[9].Controls[0] as CheckBox;
-            TextBox1.Text = Convert.ToString(C_Register.Checked);
-            TextBox2.Text = Convert.ToString(R_Register.Checked);
-            TextBox3.Text = Convert.ToString(U_Register.Checked);
-            TextBox4.Text = Convert.ToString(D_Register.Checked);
+            CheckBox C_Manufacturer = row.Cells[10].Controls[0] as CheckBox;
+            CheckBox R_Manufacturer = row.Cells[11].Controls[0] as CheckBox;
+            CheckBox U_Manufacturer = row.Cells[12].Controls[0] as CheckBox;
+            CheckBox D_Manufacturer = row.Cells[13].Controls[0] as CheckBox;
             int valueRole = 0;
             Role role = db.Roles.SingleOrDefault(p => p.Username == username);
 
@@ -123,8 +141,12 @@ namespace MasterPageWebBuyPhone.admin
             else if (ListRole.SelectedValue.Equals("Decentralization")) {
                 role.Role_Roles = C_Decentralization.Checked;
             }
-            TextBox5.Text = Convert.ToString(valueRole);
-            GridViewRoles.EditIndex = -1;
+            else if (ListRole.SelectedValue.Equals("Manufacturer")){
+                valueRole = GetValueRole(C_Manufacturer.Checked, R_Manufacturer.Checked,
+                U_Manufacturer.Checked, D_Manufacturer.Checked);
+                role.Roles_Manufacturer = valueRole;
+            }
+            GridViewRoles.EditIndex = -1;//cho phep khi bam update se thoat khỏi tình trạng edit
             ListRole.Enabled = true;
             db.SubmitChanges();
             Gv_Bind();
@@ -140,7 +162,6 @@ namespace MasterPageWebBuyPhone.admin
 
         protected void LoadGridViewChoose()
         {
-            List<RolesModel> list_Roles = new List<RolesModel>();
             String Chosse = ListRole.SelectedValue;
             switch (Chosse)
             {
@@ -152,6 +173,9 @@ namespace MasterPageWebBuyPhone.admin
                     break;
                 case "Decentralization":
                     LoadDecentralization();
+                    break;
+                case "Manufacturer":
+                    LoadManufacturer();
                     break;
                 default:
                     LoadRegister();
@@ -169,6 +193,10 @@ namespace MasterPageWebBuyPhone.admin
             GridViewRoles.Columns[7].Visible = false;
             GridViewRoles.Columns[8].Visible = false;
             GridViewRoles.Columns[9].Visible = false;
+            GridViewRoles.Columns[10].Visible = false;
+            GridViewRoles.Columns[11].Visible = false;
+            GridViewRoles.Columns[12].Visible = false;
+            GridViewRoles.Columns[13].Visible = false;
         }
         protected void LoadProduct()
         {
@@ -181,6 +209,10 @@ namespace MasterPageWebBuyPhone.admin
             GridViewRoles.Columns[7].Visible = true;
             GridViewRoles.Columns[8].Visible = true;
             GridViewRoles.Columns[9].Visible = false;
+            GridViewRoles.Columns[10].Visible = false;
+            GridViewRoles.Columns[11].Visible = false;
+            GridViewRoles.Columns[12].Visible = false;
+            GridViewRoles.Columns[13].Visible = false;
         }
         protected void LoadDecentralization()
         {
@@ -193,11 +225,31 @@ namespace MasterPageWebBuyPhone.admin
             GridViewRoles.Columns[7].Visible = false;
             GridViewRoles.Columns[8].Visible = false;
             GridViewRoles.Columns[9].Visible = true;
+            GridViewRoles.Columns[10].Visible = false;
+            GridViewRoles.Columns[11].Visible = false;
+            GridViewRoles.Columns[12].Visible = false;
+            GridViewRoles.Columns[13].Visible = false;
         }
+        protected void LoadManufacturer()
+        {
+            GridViewRoles.Columns[1].Visible = false;
+            GridViewRoles.Columns[2].Visible = false;
+            GridViewRoles.Columns[3].Visible = false;
+            GridViewRoles.Columns[4].Visible = false;
+            GridViewRoles.Columns[5].Visible = false;
+            GridViewRoles.Columns[6].Visible = false;
+            GridViewRoles.Columns[7].Visible = false;
+            GridViewRoles.Columns[8].Visible = false;
+            GridViewRoles.Columns[9].Visible = false;
+            GridViewRoles.Columns[10].Visible = true;
+            GridViewRoles.Columns[11].Visible = true;
+            GridViewRoles.Columns[12].Visible = true;
+            GridViewRoles.Columns[13].Visible = true;
+        }
+
 
         protected void LoadGridView(object sender, EventArgs e)
         {
-            LoadGridViewChoose();
             Gv_Bind();
         }
         protected int GetValueRole(Boolean value_1, Boolean value_2, Boolean value_3, Boolean value_4) {
@@ -211,10 +263,7 @@ namespace MasterPageWebBuyPhone.admin
             if (value_3) stringValue3 = "1";
             if (value_4) stringValue4 = "1";
             String s = stringValue1 + stringValue2 + stringValue3 + stringValue4;
-            TextBox6.Text = s;
             result = Convert.ToInt32(s, 2);
-            string binary = Convert.ToString(result, 2);
-            TextBox7.Text = binary;
             return result;
         }
     }

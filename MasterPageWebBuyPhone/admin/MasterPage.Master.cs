@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MasterPageWebBuyPhone.admin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,19 +26,108 @@ namespace MasterPageWebBuyPhone
                (from p in db.AccountEmps
                 where p.Username == Request.Cookies["Username"].Value
                 select p.Secret_Answer).Single();
-                if (String.IsNullOrEmpty(Secret_Answer)&& !path.Equals("/admin/UpdateInfoEmp.aspx"))
+                if (String.IsNullOrEmpty(Secret_Answer) && !path.Equals("/admin/UpdateInfoEmp.aspx"))
                 {
                     Response.Redirect("UpdateInfoEmp.aspx");
-                    
+
                 }
 
                 else
                 {
+                    String pathRuning = HttpContext.Current.Request.Url.AbsolutePath;
                     userLogin.Text = Request.Cookies["Username"].Value;
+                    RolesModel role = checkRole_Register();
+                    if (!role.C_Register) {
+                        Register.Visible = false;
+                        if (pathRuning.Equals("/admin/RegisterPage.aspx"))
+                        {
+                            Response.Redirect("HomeAdmin.aspx");
+                        }
+                    }
+                    if (!role.C_Manufacturer)
+                    {
+                        addManufacturer.Visible = false;
+                        if (pathRuning.Equals("/admin/AddManufacturerPage.aspx"))
+                        {
+                            Response.Redirect("HomeAdmin.aspx");
+                        }
+                    }
                     RepterDetails.DataSource = db.Manufacturers.Select(p => p).Where(p => p.Active.Equals(1));
                     RepterDetails.DataBind();
                 }
             }
+        }
+        protected RolesModel checkRole_Register()
+        {
+            RolesModel role = new RolesModel();
+            var roleSQL = db.Roles.Select(p => p)
+                .Where(p => p.Username == Request.Cookies["Username"].Value)
+                .Single();
+            role.Username = roleSQL.Username;
+            role.C_Roles = Convert.ToBoolean(roleSQL.Role_Roles);
+            // xu ly role register           
+            String binary = Convert.ToString(Convert.ToInt32(roleSQL.Role_Register), 2);
+            if (binary.Length.Equals(3))
+            {
+                binary = "0" + binary;
+            }
+            if (binary.Length.Equals(2))
+            {
+                binary = "00" + binary;
+            }
+            if (binary.Length.Equals(1))
+            {
+                binary = "000" + binary;
+            }
+            role.C_Register = getValueBoolean(Convert.ToString(binary[0]));
+            role.R_Register = getValueBoolean(Convert.ToString(binary[1]));
+            role.U_Register = getValueBoolean(Convert.ToString(binary[2]));
+            role.D_Register = getValueBoolean(Convert.ToString(binary[3]));
+            // xu ly role product
+            binary = Convert.ToString(Convert.ToInt32(roleSQL.Role_Product), 2);
+            if (binary.Length.Equals(3))
+            {
+                binary = "0" + binary;
+            }
+            if (binary.Length.Equals(2))
+            {
+                binary = "00" + binary;
+            }
+            if (binary.Length.Equals(1))
+            {
+                binary = "000" + binary;
+            }
+            role.C_Product = getValueBoolean(Convert.ToString(binary[0]));
+            role.R_Product = getValueBoolean(Convert.ToString(binary[1]));
+            role.U_Product = getValueBoolean(Convert.ToString(binary[2]));
+            role.D_Product = getValueBoolean(Convert.ToString(binary[3]));
+            //
+            binary = Convert.ToString(Convert.ToInt32(roleSQL.Roles_Manufacturer), 2);
+            if (binary.Length.Equals(3))
+            {
+                binary = "0" + binary;
+            }
+            if (binary.Length.Equals(2))
+            {
+                binary = "00" + binary;
+            }
+            if (binary.Length.Equals(1))
+            {
+                binary = "000" + binary;
+            }
+            role.C_Manufacturer = getValueBoolean(Convert.ToString(binary[0]));
+            role.R_Manufacturer = getValueBoolean(Convert.ToString(binary[1]));
+            role.U_Manufacturer = getValueBoolean(Convert.ToString(binary[2]));
+            role.D_Manufacturer = getValueBoolean(Convert.ToString(binary[3]));
+            return role;
+        }
+        protected Boolean getValueBoolean(String s)
+        {
+            if (s.Equals("1"))
+            {
+                return true;
+            }
+            return false;
         }
         protected void Register_Click(object sender, EventArgs e)
         {
@@ -74,7 +164,7 @@ namespace MasterPageWebBuyPhone
 
         }
         protected void loadListEmp(object sender, EventArgs e)
-        {  
+        {
             Response.Redirect("pagelist/ListEmpPage.aspx");
         }
         protected void LoadListRoles(object sender, EventArgs e)

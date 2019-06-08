@@ -55,6 +55,7 @@ namespace MasterPageWebBuyPhone.admin
             role.Username = Username.Text;
             role.Role_Register = 0;
             role.Role_Product = 0;
+            role.Roles_Manufacturer = 0;
             role.Role_Roles = false;
             db.Roles.InsertOnSubmit(role);
             db.SubmitChanges();

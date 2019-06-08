@@ -27,16 +27,14 @@
             <asp:CheckBoxField DataField="U_Product" HeaderText="U_Product" />  
             <asp:CheckBoxField DataField="D_Product" HeaderText="D_Product" /> 
             <asp:CheckBoxField DataField="C_Roles" HeaderText="Decentralization" /> 
+            <asp:CheckBoxField DataField="C_Manufacturer" HeaderText="C_Manufacturer" />  
+            <asp:CheckBoxField DataField="R_Manufacturer" HeaderText="R_Manufacturer" />
+            <asp:CheckBoxField DataField="U_Manufacturer" HeaderText="U_Manufacturer" />  
+            <asp:CheckBoxField DataField="D_Manufacturer" HeaderText="D_Manufacturer" /> 
             <asp:CommandField ShowEditButton="true" />
         </Columns>
         <RowStyle HorizontalAlign="Center" />
     </asp:GridView>
         </div>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-        <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-        <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
-        <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
-        <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+       
 </asp:Content>

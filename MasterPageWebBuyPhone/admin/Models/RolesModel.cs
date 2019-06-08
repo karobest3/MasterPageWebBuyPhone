@@ -17,5 +17,9 @@ namespace MasterPageWebBuyPhone.admin.Models
         public Boolean U_Product { get; set; }
         public Boolean D_Product { get; set; }
         public Boolean C_Roles { get; set; }
+        public Boolean C_Manufacturer { get; set; }
+        public Boolean R_Manufacturer { get; set; }
+        public Boolean U_Manufacturer { get; set; }
+        public Boolean D_Manufacturer { get; set; }
     }
 }
