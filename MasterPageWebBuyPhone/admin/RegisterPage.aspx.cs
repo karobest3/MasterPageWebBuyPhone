@@ -19,8 +19,7 @@ namespace MasterPageWebBuyPhone.admin
         }
         protected void btnRegister_Click()
         {
-            
-           
+            //Insert Emp
             String IdEmp = "Emp-" + DateTime.Now.ToString("HH:mm:ss:ffffff");
             Employee Emp = new Employee();
             Emp.ID_Emp = IdEmp;
@@ -29,6 +28,8 @@ namespace MasterPageWebBuyPhone.admin
             Emp.Phone = Phone.Text.ToString();
             db.Employees.InsertOnSubmit(Emp);
             db.SubmitChanges();
+
+            //Insert Account
             AccountEmp Acc = new AccountEmp();
             String IdAcc = "Acc-" + DateTime.Now.ToString("HH:mm:ss:ffffff");
             // Random Pass
@@ -39,7 +40,6 @@ namespace MasterPageWebBuyPhone.admin
             {
                 passRandom.Append(characters[random.Next(characters.Length)]);
             }
-            
             Acc.Active = true;
             Acc.Username = Username.Text;
             Acc.ID_Emp = IdEmp;
@@ -48,8 +48,20 @@ namespace MasterPageWebBuyPhone.admin
             Acc.Password = HashPass.GetPass(Convert.ToString(passRandom));
             db.AccountEmps.InsertOnSubmit(Acc);
             db.SubmitChanges();
+
+            //Insert Roles
+            Role role = new Role();
+            role.ID_Account = IdAcc;
+            role.Username = Username.Text;
+            role.Role_Register = 0;
+            role.Role_Product = 0;
+            role.Role_Roles = false;
+            db.Roles.InsertOnSubmit(role);
+            db.SubmitChanges();
+
+            //Send Email
             MailMessage mail = new MailMessage
-              ("karobest3@gmail.com", Email.Text, "Account Login", "Username: "+Username.Text +" Password: "+passRandom.ToString());
+              ("karobest3@gmail.com", Email.Text, "Account Login Page Admin", "Username: "+Username.Text +" Password: "+passRandom.ToString());
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.EnableSsl = true;
             smtpClient.Credentials = new System.Net.NetworkCredential

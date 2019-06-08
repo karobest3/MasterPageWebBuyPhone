@@ -42,6 +42,9 @@ namespace MasterPageWebBuyPhone
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertRole(Role instance);
+    partial void UpdateRole(Role instance);
+    partial void DeleteRole(Role instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -105,6 +108,14 @@ namespace MasterPageWebBuyPhone
 				return this.GetTable<Product>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Role> Roles
+		{
+			get
+			{
+				return this.GetTable<Role>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AccountEmp")]
@@ -126,6 +137,8 @@ namespace MasterPageWebBuyPhone
 		private string _Secret_Answer;
 		
 		private System.Nullable<bool> _Active;
+		
+		private EntitySet<Role> _Roles;
 		
 		private EntityRef<Employee> _Employee;
 		
@@ -151,6 +164,7 @@ namespace MasterPageWebBuyPhone
 		
 		public AccountEmp()
 		{
+			this._Roles = new EntitySet<Role>(new Action<Role>(this.attach_Roles), new Action<Role>(this.detach_Roles));
 			this._Employee = default(EntityRef<Employee>);
 			OnCreated();
 		}
@@ -299,6 +313,19 @@ namespace MasterPageWebBuyPhone
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AccountEmp_Role", Storage="_Roles", ThisKey="ID_Account", OtherKey="ID_Account")]
+		public EntitySet<Role> Roles
+		{
+			get
+			{
+				return this._Roles;
+			}
+			set
+			{
+				this._Roles.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_AccountEmp", Storage="_Employee", ThisKey="ID_Emp", OtherKey="ID_Emp", IsForeignKey=true)]
 		public Employee Employee
 		{
@@ -351,6 +378,18 @@ namespace MasterPageWebBuyPhone
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Roles(Role entity)
+		{
+			this.SendPropertyChanging();
+			entity.AccountEmp = this;
+		}
+		
+		private void detach_Roles(Role entity)
+		{
+			this.SendPropertyChanging();
+			entity.AccountEmp = null;
 		}
 	}
 	
@@ -1236,6 +1275,229 @@ namespace MasterPageWebBuyPhone
 						this._ID_Manufacturer = default(string);
 					}
 					this.SendPropertyChanged("Manufacturer");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
+	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id_Role;
+		
+		private string _ID_Account;
+		
+		private string _Username;
+		
+		private System.Nullable<int> _Role_Register;
+		
+		private System.Nullable<int> _Role_Product;
+		
+		private System.Nullable<bool> _Role_Roles;
+		
+		private EntityRef<AccountEmp> _AccountEmp;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId_RoleChanging(int value);
+    partial void OnId_RoleChanged();
+    partial void OnID_AccountChanging(string value);
+    partial void OnID_AccountChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnRole_RegisterChanging(System.Nullable<int> value);
+    partial void OnRole_RegisterChanged();
+    partial void OnRole_ProductChanging(System.Nullable<int> value);
+    partial void OnRole_ProductChanged();
+    partial void OnRole_RolesChanging(System.Nullable<bool> value);
+    partial void OnRole_RolesChanged();
+    #endregion
+		
+		public Role()
+		{
+			this._AccountEmp = default(EntityRef<AccountEmp>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Role", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id_Role
+		{
+			get
+			{
+				return this._Id_Role;
+			}
+			set
+			{
+				if ((this._Id_Role != value))
+				{
+					this.OnId_RoleChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Role = value;
+					this.SendPropertyChanged("Id_Role");
+					this.OnId_RoleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Account", DbType="NVarChar(200)")]
+		public string ID_Account
+		{
+			get
+			{
+				return this._ID_Account;
+			}
+			set
+			{
+				if ((this._ID_Account != value))
+				{
+					if (this._AccountEmp.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_AccountChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Account = value;
+					this.SendPropertyChanged("ID_Account");
+					this.OnID_AccountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(100)")]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role_Register", DbType="Int")]
+		public System.Nullable<int> Role_Register
+		{
+			get
+			{
+				return this._Role_Register;
+			}
+			set
+			{
+				if ((this._Role_Register != value))
+				{
+					this.OnRole_RegisterChanging(value);
+					this.SendPropertyChanging();
+					this._Role_Register = value;
+					this.SendPropertyChanged("Role_Register");
+					this.OnRole_RegisterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role_Product", DbType="Int")]
+		public System.Nullable<int> Role_Product
+		{
+			get
+			{
+				return this._Role_Product;
+			}
+			set
+			{
+				if ((this._Role_Product != value))
+				{
+					this.OnRole_ProductChanging(value);
+					this.SendPropertyChanging();
+					this._Role_Product = value;
+					this.SendPropertyChanged("Role_Product");
+					this.OnRole_ProductChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role_Roles", DbType="Bit")]
+		public System.Nullable<bool> Role_Roles
+		{
+			get
+			{
+				return this._Role_Roles;
+			}
+			set
+			{
+				if ((this._Role_Roles != value))
+				{
+					this.OnRole_RolesChanging(value);
+					this.SendPropertyChanging();
+					this._Role_Roles = value;
+					this.SendPropertyChanged("Role_Roles");
+					this.OnRole_RolesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AccountEmp_Role", Storage="_AccountEmp", ThisKey="ID_Account", OtherKey="ID_Account", IsForeignKey=true)]
+		public AccountEmp AccountEmp
+		{
+			get
+			{
+				return this._AccountEmp.Entity;
+			}
+			set
+			{
+				AccountEmp previousValue = this._AccountEmp.Entity;
+				if (((previousValue != value) 
+							|| (this._AccountEmp.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AccountEmp.Entity = null;
+						previousValue.Roles.Remove(this);
+					}
+					this._AccountEmp.Entity = value;
+					if ((value != null))
+					{
+						value.Roles.Add(this);
+						this._ID_Account = value.ID_Account;
+					}
+					else
+					{
+						this._ID_Account = default(string);
+					}
+					this.SendPropertyChanged("AccountEmp");
 				}
 			}
 		}

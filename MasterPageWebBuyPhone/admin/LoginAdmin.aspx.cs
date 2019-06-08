@@ -18,6 +18,7 @@ namespace MasterPageWebBuyPhone.admin
              select p).Count();
             if (UserAdmin.Equals(0))
             {
+                //Insert Emp
                 String IdEmp = "Emp-" + DateTime.Now.ToString("HH:mm:ss:ffffff");
                 Employee Emp = new Employee();
                 Emp.ID_Emp = IdEmp;
@@ -30,6 +31,7 @@ namespace MasterPageWebBuyPhone.admin
                 Emp.Sex = true;
                 db.Employees.InsertOnSubmit(Emp);
                 db.SubmitChanges();
+                //Insert Account
                 AccountEmp Acc = new AccountEmp();
                 String IdAcc = "Acc-" + DateTime.Now.ToString("HH:mm:ss:ffffff");
                 Acc.Active = true;
@@ -40,6 +42,15 @@ namespace MasterPageWebBuyPhone.admin
                 Acc.Secret_Question = "What is the first phone number you use?";
                 Acc.Secret_Answer = "admin";
                 db.AccountEmps.InsertOnSubmit(Acc);
+                db.SubmitChanges();
+                //Insert Roles
+                Role role = new Role();
+                role.ID_Account = IdAcc;
+                role.Username = "admin";
+                role.Role_Register = 15;
+                role.Role_Product = 15;
+                role.Role_Roles = true;
+                db.Roles.InsertOnSubmit(role);
                 db.SubmitChanges();
             }
         }

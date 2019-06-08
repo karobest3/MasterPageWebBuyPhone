@@ -73,6 +73,7 @@
     <Content Include="admin\AddManufacturerPage.aspx" />
     <Content Include="admin\css\FormLogin.css" />
     <Content Include="admin\HomeAdmin.aspx" />
+    <Content Include="admin\ListRoles.aspx" />
     <Content Include="admin\LoginAdmin.aspx" />
     <Content Include="admin\pagelist\ListEmpPage.aspx" />
     <Content Include="admin\RegisterPage.aspx" />
@@ -87,13 +88,20 @@
     <Compile Include="admin\AddManufacturerPage.aspx.designer.cs">
       <DependentUpon>AddManufacturerPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\HashPass.cs" />
+    <Compile Include="admin\Commons\HashPass.cs" />
     <Compile Include="admin\HomeAdmin.aspx.cs">
       <DependentUpon>HomeAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\HomeAdmin.aspx.designer.cs">
       <DependentUpon>HomeAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ListRoles.aspx.cs">
+      <DependentUpon>ListRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ListRoles.aspx.designer.cs">
+      <DependentUpon>ListRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\LoginAdmin.aspx.cs">
       <DependentUpon>LoginAdmin.aspx</DependentUpon>
@@ -102,6 +110,7 @@
     <Compile Include="admin\LoginAdmin.aspx.designer.cs">
       <DependentUpon>LoginAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\Models\RolesModel.cs" />
     <Compile Include="admin\pagelist\ListEmpPage.aspx.cs">
       <DependentUpon>ListEmpPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

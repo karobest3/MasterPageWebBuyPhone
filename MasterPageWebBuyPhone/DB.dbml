@@ -9,6 +9,7 @@
       <Column Name="Secret_Question" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Secret_Answer" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="AccountEmp_Role" Member="Roles" ThisKey="ID_Account" OtherKey="ID_Account" Type="Role" />
       <Association Name="Employee_AccountEmp" Member="Employee" ThisKey="ID_Emp" OtherKey="ID_Emp" Type="Employee" IsForeignKey="true" />
     </Type>
   </Table>
@@ -54,6 +55,17 @@
       <Column Name="Battery" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Details" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
       <Association Name="Manufacturer_Product" Member="Manufacturer" ThisKey="ID_Manufacturer" OtherKey="Id_Manufacturer" Type="Manufacturer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="Id_Role" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Account" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Role_Register" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Role_Product" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Role_Roles" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="AccountEmp_Role" Member="AccountEmp" ThisKey="ID_Account" OtherKey="ID_Account" Type="AccountEmp" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

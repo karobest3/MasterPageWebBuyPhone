@@ -77,6 +77,9 @@ namespace MasterPageWebBuyPhone
         {  
             Response.Redirect("pagelist/ListEmpPage.aspx");
         }
-        
+        protected void LoadListRoles(object sender, EventArgs e)
+        {
+            Response.Redirect("ListRoles.aspx");
+        }
     }
 }

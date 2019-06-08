@@ -16,7 +16,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        
         <div>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -49,6 +48,9 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-right navbar-top-links">
+                     <li class="nav-item">
+                        <asp:LinkButton class="nav-link" ID="ListRoles" runat="server" OnClick="LoadListRoles" CausesValidation="false">Decentralization</asp:LinkButton></li>
+                    <li class="nav-item dropdown">
                     <li class="nav-item">
                         <asp:LinkButton class="nav-link" ID="Register" runat="server" OnClick="Register_Click" CausesValidation="false">Register</asp:LinkButton></li>
                     <li class="nav-item dropdown">
@@ -67,15 +69,10 @@
             </div>
         </nav>
         </div>
-
-
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-
-
-
     </form>
 </body>
 </html>
