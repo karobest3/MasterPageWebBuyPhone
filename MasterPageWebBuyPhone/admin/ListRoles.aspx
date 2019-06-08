@@ -15,7 +15,7 @@
         DataKeyNames="Username" OnRowEditing="EditGridView" 
         OnRowCancelingEdit="CancelGridView" 
         AutoGenerateColumns="false"
-        OnRowUpdating ="UpdateGridView">
+        OnRowUpdating ="UpdateGridView" Width="1000px">
         <Columns>
             <asp:BoundField DataField="Username" HeaderText="Username" ReadOnly="true"/>  
             <asp:CheckBoxField DataField="C_Register" HeaderText="C_Register" />  
@@ -31,6 +31,7 @@
             <asp:CheckBoxField DataField="R_Manufacturer" HeaderText="R_Manufacturer" />
             <asp:CheckBoxField DataField="U_Manufacturer" HeaderText="U_Manufacturer" />  
             <asp:CheckBoxField DataField="D_Manufacturer" HeaderText="D_Manufacturer" /> 
+            
             <asp:CommandField ShowEditButton="true" />
         </Columns>
         <RowStyle HorizontalAlign="Center" />

@@ -1,0 +1,47 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterHomePage.master.cs" Inherits="MasterPageWebBuyPhone.HomePage.MasterHomePage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link" ID="Home" runat="server" CausesValidation="false"> <i class="fas fa-home"></i></asp:LinkButton>
+                        </li>
+                        <asp:Repeater ID="RepterDetails" runat="server">
+                            <ItemTemplate>
+                                <li class="nav-item">
+                                    <asp:LinkButton class="nav-link" runat="server" OnClick="loadPageProduct" Text='<%#Eval("Name_Manufacturer")%>'> </asp:LinkButton>
+                                </li>
+                                
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+                    </ul>
+                    <ul class="navbar-nav navbar-right navbar-top-links">
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

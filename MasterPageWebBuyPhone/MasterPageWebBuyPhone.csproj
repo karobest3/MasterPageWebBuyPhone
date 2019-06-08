@@ -71,13 +71,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\AddManufacturerPage.aspx" />
+    <Content Include="admin\AddProductPage.aspx" />
+    <Content Include="admin\ChangePasswordPageAdmin.aspx" />
     <Content Include="admin\css\FormLogin.css" />
+    <Content Include="admin\css\Image.css" />
     <Content Include="admin\HomeAdmin.aspx" />
+    <Content Include="admin\ListEmployees.aspx" />
+    <Content Include="admin\ListProducts.aspx" />
     <Content Include="admin\ListRoles.aspx" />
     <Content Include="admin\LoginAdmin.aspx" />
-    <Content Include="admin\pagelist\ListEmpPage.aspx" />
+    <Content Include="admin\ListManufacturer.aspx" />
     <Content Include="admin\RegisterPage.aspx" />
     <Content Include="admin\UpdateInfoEmp.aspx" />
+    <Content Include="HomePage\Home.aspx" />
+    <Content Include="HomePage\ProductsPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +95,21 @@
     <Compile Include="admin\AddManufacturerPage.aspx.designer.cs">
       <DependentUpon>AddManufacturerPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\AddProductPage.aspx.cs">
+      <DependentUpon>AddProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\AddProductPage.aspx.designer.cs">
+      <DependentUpon>AddProductPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ChangePasswordPageAdmin.aspx.cs">
+      <DependentUpon>ChangePasswordPageAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ChangePasswordPageAdmin.aspx.designer.cs">
+      <DependentUpon>ChangePasswordPageAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Commons\CheckDecentralization.cs" />
     <Compile Include="admin\Commons\HashPass.cs" />
     <Compile Include="admin\HomeAdmin.aspx.cs">
       <DependentUpon>HomeAdmin.aspx</DependentUpon>
@@ -95,6 +117,20 @@
     </Compile>
     <Compile Include="admin\HomeAdmin.aspx.designer.cs">
       <DependentUpon>HomeAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ListEmployees.aspx.cs">
+      <DependentUpon>ListEmployees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ListEmployees.aspx.designer.cs">
+      <DependentUpon>ListEmployees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ListProducts.aspx.cs">
+      <DependentUpon>ListProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ListProducts.aspx.designer.cs">
+      <DependentUpon>ListProducts.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\ListRoles.aspx.cs">
       <DependentUpon>ListRoles.aspx</DependentUpon>
@@ -111,12 +147,12 @@
       <DependentUpon>LoginAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Models\RolesModel.cs" />
-    <Compile Include="admin\pagelist\ListEmpPage.aspx.cs">
-      <DependentUpon>ListEmpPage.aspx</DependentUpon>
+    <Compile Include="admin\ListManufacturer.aspx.cs">
+      <DependentUpon>ListManufacturer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\pagelist\ListEmpPage.aspx.designer.cs">
-      <DependentUpon>ListEmpPage.aspx</DependentUpon>
+    <Compile Include="admin\ListManufacturer.aspx.designer.cs">
+      <DependentUpon>ListManufacturer.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\RegisterPage.aspx.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>
@@ -144,6 +180,27 @@
     <Compile Include="admin\MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="HomePage\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage\MasterHomePage.Master.cs">
+      <DependentUpon>MasterHomePage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage\MasterHomePage.Master.designer.cs">
+      <DependentUpon>MasterHomePage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage\ProductsPage.aspx.cs">
+      <DependentUpon>ProductsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage\ProductsPage.aspx.designer.cs">
+      <DependentUpon>ProductsPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +213,7 @@
     <None Include="DB.dbml.layout">
       <DependentUpon>DB.dbml</DependentUpon>
     </None>
+    <Content Include="HomePage\MasterHomePage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -166,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="admin\Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

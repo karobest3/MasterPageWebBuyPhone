@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MasterPageWebBuyPhone.admin.pagelist {
+namespace MasterPageWebBuyPhone.HomePage {
     
     
-    public partial class ListEmpPage {
+    public partial class ProductsPage {
         
         /// <summary>
-        /// listEmp control.
+        /// RepterDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView listEmp;
+        protected global::System.Web.UI.WebControls.Repeater RepterDetails;
     }
 }

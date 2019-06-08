@@ -10,42 +10,33 @@
 namespace MasterPageWebBuyPhone.admin {
     
     
-    public partial class AddManufacturerPage1 {
+    public partial class ListProducts {
         
         /// <summary>
-        /// NameMNF control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NameMNF;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// ListManufacturer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.DropDownList ListManufacturer;
         
         /// <summary>
-        /// CustomValidator3 control.
+        /// GridViewProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator3;
-        
-        /// <summary>
-        /// btnAddMNF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddMNF;
+        protected global::System.Web.UI.WebControls.GridView GridViewProduct;
     }
 }

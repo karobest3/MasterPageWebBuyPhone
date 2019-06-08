@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <title></title>
+     <link href="css/Image.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -18,56 +19,48 @@
     <form id="form1" runat="server">
         <div>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <asp:LinkButton class="nav-link" ID="Home" runat="server" OnClick="Home_Click" CausesValidation="false"> <i class="fas fa-home"></i></asp:LinkButton>
-                    </li>
-                    <li class="nav-item">
-                        <asp:LinkButton class="nav-link" ID="addManufacturer" runat="server" OnClick="loadPageAddManu" CausesValidation="false"> Manufacturer</asp:LinkButton>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <asp:LinkButton class="dropdown-item" ID="listMNF" runat="server" OnClick="loadPageAddManu" CausesValidation="false"> Manufacturers</asp:LinkButton>     
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <asp:LinkButton class="dropdown-item" ID="listEmp" runat="server" OnClick="loadListEmp" CausesValidation="false"> Employees</asp:LinkButton>     
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <asp:Repeater ID="RepterDetails" runat="server">
-                                 <ItemTemplate>
-                                     <asp:LinkButton class="dropdown-item" runat="server" OnClick="loadPageProduct" Text='<%#Eval("Name_Manufacturer")%>' CausesValidation="false"> </asp:LinkButton>
-                                 </ItemTemplate>
-                             </asp:Repeater>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-right navbar-top-links">
-                     <li class="nav-item">
-                        <asp:LinkButton class="nav-link" ID="ListRoles" runat="server" OnClick="LoadListRoles" CausesValidation="false">Decentralization</asp:LinkButton></li>
-                    <li class="nav-item dropdown">
-                    <li class="nav-item">
-                        <asp:LinkButton class="nav-link" ID="Register" runat="server" OnClick="Register_Click" CausesValidation="false">Register</asp:LinkButton></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>
-                            <asp:Label ID="userLogin" runat="server"></asp:Label><b class="caret"></b>
-                        </a>
-                        <div class="dropdown-menu dropdown-user dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <asp:LinkButton class="dropdown-item" ID="InfoUser" runat="server" OnClick="showPageInfo" CausesValidation="false"></> Infomation</asp:LinkButton>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <asp:LinkButton class="nav-link" ID="Home" runat="server" OnClick="Home_Click" CausesValidation="false"> <i class="fas fa-home"></i></asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" ID="addManufacturer" runat="server" OnClick="loadPageAddManu" CausesValidation="false"> Manufacturer</asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" ID="AddProduct" runat="server" OnClick="loadPageAddProduct" CausesValidation="false"> Products</asp:LinkButton>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <asp:LinkButton class="dropdown-item" ID="listMNF" runat="server" OnClick="loadListManufacturer" CausesValidation="false"> Manufacturers</asp:LinkButton>
+                                <asp:LinkButton class="dropdown-item" ID="listEmp" runat="server" OnClick="loadListEmp" CausesValidation="false"> Employees</asp:LinkButton>
+                                <asp:LinkButton class="dropdown-item" ID="listProduct" runat="server" OnClick="loadListProduct" CausesValidation="false"> Products</asp:LinkButton>
+                            </div>
+                           
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-right navbar-top-links">
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" ID="ListRoles" runat="server" OnClick="LoadListRoles" CausesValidation="false">Decentralization</asp:LinkButton></li>
+                      
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" ID="Register" runat="server" OnClick="Register_Click" CausesValidation="false">Register</asp:LinkButton></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>
+                                <asp:Label ID="userLogin" runat="server"></asp:Label><b class="caret"></b>
+                            </a>
+                            <div class="dropdown-menu dropdown-user dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <asp:LinkButton class="dropdown-item" ID="InfoUser" runat="server" OnClick="showPageInfo" CausesValidation="false"></> Infomation</asp:LinkButton>
+                                <asp:LinkButton class="dropdown-item" ID="ChangePassword" runat="server" OnClick="showPageChangePass" CausesValidation="false"> Change Password</asp:LinkButton>
 
-                            <a class="dropdown-item" href="#"><i class="fas fa-exchange-alt"></i>Change Password</a>
-                            <div class="dropdown-divider"></div>
-                            <asp:LinkButton class="dropdown-item" ID="LogOut" runat="server" OnClick="LogOut_Click" CausesValidation="false"><i class="fas fa-sign-out-alt"></i> Log Out</asp:LinkButton>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                                <div class="dropdown-divider"></div>
+                                <asp:LinkButton class="dropdown-item" ID="LogOut" runat="server" OnClick="LogOut_Click" CausesValidation="false"><i class="fas fa-sign-out-alt"></i> Log Out</asp:LinkButton>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

@@ -30,12 +30,12 @@ namespace MasterPageWebBuyPhone
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertEmployee(Employee instance);
-    partial void UpdateEmployee(Employee instance);
-    partial void DeleteEmployee(Employee instance);
     partial void InsertAccountEmp(AccountEmp instance);
     partial void UpdateAccountEmp(AccountEmp instance);
     partial void DeleteAccountEmp(AccountEmp instance);
+    partial void InsertEmployee(Employee instance);
+    partial void UpdateEmployee(Employee instance);
+    partial void DeleteEmployee(Employee instance);
     partial void InsertManufacturer(Manufacturer instance);
     partial void UpdateManufacturer(Manufacturer instance);
     partial void DeleteManufacturer(Manufacturer instance);
@@ -48,7 +48,7 @@ namespace MasterPageWebBuyPhone
     #endregion
 		
 		public DBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebBuyPhoneConnectionString2"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebBuyPhoneConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -77,19 +77,19 @@ namespace MasterPageWebBuyPhone
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Employee> Employees
-		{
-			get
-			{
-				return this.GetTable<Employee>();
-			}
-		}
-		
 		public System.Data.Linq.Table<AccountEmp> AccountEmps
 		{
 			get
 			{
 				return this.GetTable<AccountEmp>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Employee> Employees
+		{
+			get
+			{
+				return this.GetTable<Employee>();
 			}
 		}
 		
@@ -115,264 +115,6 @@ namespace MasterPageWebBuyPhone
 			{
 				return this.GetTable<Role>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employees")]
-	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _ID_Emp;
-		
-		private string _FullName;
-		
-		private string _Address;
-		
-		private string _Email;
-		
-		private string _Phone;
-		
-		private string _Passport;
-		
-		private System.Nullable<System.DateTime> _Birthday;
-		
-		private System.Nullable<bool> _Sex;
-		
-		private EntitySet<AccountEmp> _AccountEmps;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_EmpChanging(string value);
-    partial void OnID_EmpChanged();
-    partial void OnFullNameChanging(string value);
-    partial void OnFullNameChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPhoneChanging(string value);
-    partial void OnPhoneChanged();
-    partial void OnPassportChanging(string value);
-    partial void OnPassportChanged();
-    partial void OnBirthdayChanging(System.Nullable<System.DateTime> value);
-    partial void OnBirthdayChanged();
-    partial void OnSexChanging(System.Nullable<bool> value);
-    partial void OnSexChanged();
-    #endregion
-		
-		public Employee()
-		{
-			this._AccountEmps = new EntitySet<AccountEmp>(new Action<AccountEmp>(this.attach_AccountEmps), new Action<AccountEmp>(this.detach_AccountEmps));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Emp", DbType="NVarChar(200) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ID_Emp
-		{
-			get
-			{
-				return this._ID_Emp;
-			}
-			set
-			{
-				if ((this._ID_Emp != value))
-				{
-					this.OnID_EmpChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Emp = value;
-					this.SendPropertyChanged("ID_Emp");
-					this.OnID_EmpChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(100)")]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this.OnFullNameChanging(value);
-					this.SendPropertyChanging();
-					this._FullName = value;
-					this.SendPropertyChanged("FullName");
-					this.OnFullNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(100)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(50)")]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this.OnPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Phone = value;
-					this.SendPropertyChanged("Phone");
-					this.OnPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Passport", DbType="NVarChar(30)")]
-		public string Passport
-		{
-			get
-			{
-				return this._Passport;
-			}
-			set
-			{
-				if ((this._Passport != value))
-				{
-					this.OnPassportChanging(value);
-					this.SendPropertyChanging();
-					this._Passport = value;
-					this.SendPropertyChanged("Passport");
-					this.OnPassportChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birthday", DbType="Date")]
-		public System.Nullable<System.DateTime> Birthday
-		{
-			get
-			{
-				return this._Birthday;
-			}
-			set
-			{
-				if ((this._Birthday != value))
-				{
-					this.OnBirthdayChanging(value);
-					this.SendPropertyChanging();
-					this._Birthday = value;
-					this.SendPropertyChanged("Birthday");
-					this.OnBirthdayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sex", DbType="Bit")]
-		public System.Nullable<bool> Sex
-		{
-			get
-			{
-				return this._Sex;
-			}
-			set
-			{
-				if ((this._Sex != value))
-				{
-					this.OnSexChanging(value);
-					this.SendPropertyChanging();
-					this._Sex = value;
-					this.SendPropertyChanged("Sex");
-					this.OnSexChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_AccountEmp", Storage="_AccountEmps", ThisKey="ID_Emp", OtherKey="ID_Emp")]
-		public EntitySet<AccountEmp> AccountEmps
-		{
-			get
-			{
-				return this._AccountEmps;
-			}
-			set
-			{
-				this._AccountEmps.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_AccountEmps(AccountEmp entity)
-		{
-			this.SendPropertyChanging();
-			entity.Employee = this;
-		}
-		
-		private void detach_AccountEmps(AccountEmp entity)
-		{
-			this.SendPropertyChanging();
-			entity.Employee = null;
 		}
 	}
 	
@@ -651,6 +393,264 @@ namespace MasterPageWebBuyPhone
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employees")]
+	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ID_Emp;
+		
+		private string _FullName;
+		
+		private string _Address;
+		
+		private string _Email;
+		
+		private string _Phone;
+		
+		private string _Passport;
+		
+		private System.Nullable<System.DateTime> _Birthday;
+		
+		private System.Nullable<bool> _Sex;
+		
+		private EntitySet<AccountEmp> _AccountEmps;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_EmpChanging(string value);
+    partial void OnID_EmpChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnPassportChanging(string value);
+    partial void OnPassportChanged();
+    partial void OnBirthdayChanging(System.Nullable<System.DateTime> value);
+    partial void OnBirthdayChanged();
+    partial void OnSexChanging(System.Nullable<bool> value);
+    partial void OnSexChanged();
+    #endregion
+		
+		public Employee()
+		{
+			this._AccountEmps = new EntitySet<AccountEmp>(new Action<AccountEmp>(this.attach_AccountEmps), new Action<AccountEmp>(this.detach_AccountEmps));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Emp", DbType="NVarChar(200) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID_Emp
+		{
+			get
+			{
+				return this._ID_Emp;
+			}
+			set
+			{
+				if ((this._ID_Emp != value))
+				{
+					this.OnID_EmpChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Emp = value;
+					this.SendPropertyChanged("ID_Emp");
+					this.OnID_EmpChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(100)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(100)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(50)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Passport", DbType="NVarChar(30)")]
+		public string Passport
+		{
+			get
+			{
+				return this._Passport;
+			}
+			set
+			{
+				if ((this._Passport != value))
+				{
+					this.OnPassportChanging(value);
+					this.SendPropertyChanging();
+					this._Passport = value;
+					this.SendPropertyChanged("Passport");
+					this.OnPassportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birthday", DbType="Date")]
+		public System.Nullable<System.DateTime> Birthday
+		{
+			get
+			{
+				return this._Birthday;
+			}
+			set
+			{
+				if ((this._Birthday != value))
+				{
+					this.OnBirthdayChanging(value);
+					this.SendPropertyChanging();
+					this._Birthday = value;
+					this.SendPropertyChanged("Birthday");
+					this.OnBirthdayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sex", DbType="Bit")]
+		public System.Nullable<bool> Sex
+		{
+			get
+			{
+				return this._Sex;
+			}
+			set
+			{
+				if ((this._Sex != value))
+				{
+					this.OnSexChanging(value);
+					this.SendPropertyChanging();
+					this._Sex = value;
+					this.SendPropertyChanged("Sex");
+					this.OnSexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_AccountEmp", Storage="_AccountEmps", ThisKey="ID_Emp", OtherKey="ID_Emp")]
+		public EntitySet<AccountEmp> AccountEmps
+		{
+			get
+			{
+				return this._AccountEmps;
+			}
+			set
+			{
+				this._AccountEmps.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AccountEmps(AccountEmp entity)
+		{
+			this.SendPropertyChanging();
+			entity.Employee = this;
+		}
+		
+		private void detach_AccountEmps(AccountEmp entity)
+		{
+			this.SendPropertyChanging();
+			entity.Employee = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Manufacturer")]
 	public partial class Manufacturer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -801,7 +801,7 @@ namespace MasterPageWebBuyPhone
 		
 		private string _ID_Manufacturer;
 		
-		private System.Nullable<decimal> _Price_Product;
+		private System.Nullable<double> _Price_Product;
 		
 		private string _Img_Product;
 		
@@ -843,7 +843,7 @@ namespace MasterPageWebBuyPhone
     partial void OnName_ProductChanged();
     partial void OnID_ManufacturerChanging(string value);
     partial void OnID_ManufacturerChanged();
-    partial void OnPrice_ProductChanging(System.Nullable<decimal> value);
+    partial void OnPrice_ProductChanging(System.Nullable<double> value);
     partial void OnPrice_ProductChanged();
     partial void OnImg_ProductChanging(string value);
     partial void OnImg_ProductChanged();
@@ -881,7 +881,7 @@ namespace MasterPageWebBuyPhone
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Product", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Product", DbType="NVarChar(200) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string ID_Product
 		{
 			get
@@ -945,8 +945,8 @@ namespace MasterPageWebBuyPhone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price_Product", DbType="Money")]
-		public System.Nullable<decimal> Price_Product
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price_Product", DbType="Float")]
+		public System.Nullable<double> Price_Product
 		{
 			get
 			{
@@ -965,7 +965,7 @@ namespace MasterPageWebBuyPhone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Img_Product", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Img_Product", DbType="NVarChar(200)")]
 		public string Img_Product
 		{
 			get

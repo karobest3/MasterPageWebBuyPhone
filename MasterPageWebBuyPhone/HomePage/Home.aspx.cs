@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MasterPageWebBuyPhone.admin.pagelist
+namespace MasterPageWebBuyPhone.HomePage
 {
-    public partial class ListEmpPage : System.Web.UI.Page
+    public partial class Home : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+
         }
     }
 }
